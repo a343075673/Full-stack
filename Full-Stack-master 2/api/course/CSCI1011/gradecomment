@@ -1,0 +1,14 @@
+{
+    "arrayName": [
+        {
+            "grade": 8,
+            "comment": "good",
+            "username": "admin"
+        },
+        {
+            "grade": 4,
+            "comment": "difficult, professor is tough",
+            "username": "bing"
+        }
+    ]
+}

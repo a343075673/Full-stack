@@ -1,0 +1,16 @@
+{
+    "popular": [
+    {
+        "courseid": "CSCI0001",
+        "coursename": "CSNO.7"
+    },
+    {
+        "courseid": "CSCI0002",
+        "coursename": "CSNO.8"
+    },
+    {
+        "courseid": "CSCI0003",
+        "coursename": "CSNO.9"
+    }
+    ]
+}

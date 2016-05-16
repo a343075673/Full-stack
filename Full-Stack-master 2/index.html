@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Rate My Courses is the best college courses reviews and ratings source based on student feedback. Over 1.4 million courses &amp; 15 million reviews.">
+        <title>Rate My Courses - Review Courses, Courses Ranklists</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link href="/navbar-fixed-top.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Rate My Courses</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/courses.html">Courses</a></li>
+                        <!--<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ranklists<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/ranklists/high.html">Highest Rate</a></li>
+                                <li><a href="/ranklists/low.html">Lowest Rate</a></li>
+                                <li><a href="/ranklists/popular.html">Most Popular</a></li>
+                            </ul>
+                        </li>-->
+                        <li><a href="/about.html">About</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="sign-stuff"></ul>
+                </div>
+            </div>
+        </nav>
+        
+        
+        
+        
+        
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Rate My Courses</h1>
+        <p>Rate My Courses is the best college courses reviews and ratings website with source based on students' feedback. Over "1.4 million" courses & "15 million" reviews.</p>
+        <p>To see the available courses, just click the button below.</p>
+        <p>
+          <a class="btn btn-lg btn-primary" href="/courses.html" role="button">View all courses &raquo;</a>
+        </p>
+      </div>
+    </div>
+    
+        <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Most Popular</h2>
+          <p>Here show the Top 3 courses with the most reviews. Click the course name and button to learn more.</p>
+          <p>
+            <ol id="popular-list">
+            </ol>
+          </p>
+          <!--<p><a class="btn btn-default" href="/ranklists/popular.html" role="button">Learn more &raquo;</a></p>-->
+        </div>
+        <div class="col-md-4">
+          <h2>Highest Rate</h2>
+          <p>Here show the Top 3 courses with the highest rate. Click the course name and button to learn more.</p>
+          <p>
+          <p><h3>Under Construction</h3></p>
+            <ol id="high-list">
+            </ol>
+          </p>
+          <!--<p><a class="btn btn-default" href="/ranklists/high.html" role="button">Learn more &raquo;</a></p>-->
+        </div>
+        <div class="col-md-4">
+          <h2>Lowest Rate</h2>
+          <p>Here show the Top 3 courses with the lowest rate. Click the course name and button to learn more.</p>
+          <p>
+          <p><h3>Under Construction</h3></p>
+            <ol id="low-list">
+            </ol>
+          </p>
+          <!--<p><a class="btn btn-default" href="/ranklists/low.html" role="button">Learn more &raquo;</a></p>-->
+       </div>
+      </div>
+</div>
+    
+        <div class="container">
+
+<hr>
+        <footer>
+            <p>&copy; 2016 - Rate My Courses</p>
+        </footer>
+        </div>
+        
+
+    </body>
+
+    <script src="http://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <script src="/base-api-url.js"></script>
+    <script src="/user-cookie.js"></script>
+
+    <script type="text/template" id="list-template">
+        <li>
+                <a href=${ID_url}>${ID} - ${Name}</a>
+        </li>
+    </script>
+
+    <script>
+        (function () {
+
+            //VIEW
+            var UIService = (function () {
+
+                var applyTemplate = function (template, data) {
+                    return template
+                        .replace(/\${ID_url}/g, "/courses/" + data.courseid + ".html")
+                        .replace(/\${ID}/g, data.courseid)
+                        .replace(/\${Name}/g, data.coursename);
+                };
+                var renderTopTenResult = function (results) {
+                    return results.map(function (data) {
+                        return applyTemplate(resultTemplate, data);
+                    }).join("");
+                };
+
+
+                var resultTemplate = $("#list-template").html();
+
+                return {
+                    displayTopTenProfiles: function (results) {
+                        var rendering = renderTopTenResult(results);
+                        $("#popular-list").html(rendering);
+                    }
+                }
+            }());
+
+
+
+            //MODEL
+            var DataService = (function () {
+
+                return {
+                    getRanklistsData: function (currentUser) {
+                        return $.ajax({
+                            type: "GET",
+                            url: BASE_API_URL + "getpopular",
+                            dataType: "json",
+                            contentType: "application/json"
+                        });
+                    }
+                };
+            }());
+
+
+            //CONTROLLER
+            var App = (function () {
+                return {
+                    loadAndDisplayRanklists: function () {
+                        var promise = DataService.getRanklistsData();
+                        promise.done(function (results) {
+                            UIService.displayTopTenProfiles(results.popular);
+                        });
+                    }
+                };
+            }());
+
+
+
+            $(document).ready(function () {
+                App.loadAndDisplayRanklists();
+            });
+    }());
+
+
+
+
+    </script>
+
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Rate My Courses is the best college courses reviews and ratings source based on student feedback. Over 1.4 million courses &amp; 15 million reviews.">
+        <title>Most Popular Courses - Rate My Courses - Review Courses, Courses Ranklists</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link href="/navbar-fixed-top.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Rate My Courses</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/courses.html">Courses</a></li>
+                        <li class="active" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ranklists<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/ranklists/high.html">Highest Rate</a></li>
+                                <li><a href="/ranklists/low.html">Lowest Rate</a></li>
+                                <li class="active"><a href="/ranklists/popular.html">Most Popular</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/about.html">About</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="sign-stuff"></ul>
+                </div>
+            </div>
+        </nav>
+    
+        <div class="container">
+            
+            <h1>Most Popular Courses(Under Construction)</h1>
+                <hr>
+                <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Ranking</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Instructor</th>
+                        <th>Description</th>
+                        <th>More</th>
+                    </tr>
+                </thead>
+                <tbody id="rank-list">
+                </tbody>
+            </table>
+</div>
+<div class="container">
+<hr>
+        <footer>
+            <p>&copy; 2016 - Rate My Courses</p>
+        </footer>
+        </div>
+        
+
+    </body>
+
+    <script src="http://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script src="/base-api-url.js"></script>
+    <script src="/user-cookie.js"></script>
+
+    <script type="text/template" id="list-template">
+        <tr>
+            <td>${Ranking}</td>
+            <td>${ID}</td>
+            <td>${Name}</td>
+            <td>${Instructor}</td>
+            <td>${Description}</td>
+            <td><a class="btn btn-default" href=${ID_url} role="button">More</a></td>
+        </tr>
+    </script>
+
+    <script>
+        (function () {
+
+            //VIEW
+            var UIService = (function () {
+
+                var applyTemplate = function (template, data) {
+                    return template
+                        .replace(/\${Ranking}/g, data.Ranking)
+                        .replace(/\${ID}/g, data.courseid)
+                        .replace(/\${Name}/g, data.coursename)
+                        .replace(/\${Instructor}/g, data.Instructor)
+                        .replace(/\${Description}/g, data.Description)
+                        .replace(/\${ID_url}/g, "/courses/" + data.courseid + ".html");
+                };
+                var renderTopTenResult = function (results) {
+                    return results.map(function (data) {
+                        return applyTemplate(resultTemplate, data);
+                    }).join("");
+                };
+
+
+                var resultTemplate = $("#list-template").html();
+
+                return {
+                    displayTopTenProfiles: function (results) {
+                        var rendering = renderTopTenResult(results);
+                        $("#rank-list").html(rendering);
+                    }
+                }
+            }());
+
+
+
+            //MODEL
+            var DataService = (function () {
+
+                return {
+                    getRanklistsData: function (currentUser) {
+                        return $.ajax({
+                            type: "GET",
+                            url: BASE_API_URL + "ranklist-popular.json",
+                            dataType: "json",
+                            contentType: "application/json"
+                        });
+                    }
+                };
+            }());
+
+
+            //CONTROLLER
+            var App = (function () {
+                return {
+                    loadAndDisplayRanklists: function () {
+                        var promise = DataService.getRanklistsData();
+                        promise.done(function (results) {
+                            UIService.displayTopTenProfiles(results.popular);
+                        });
+                    }
+                };
+            }());
+
+
+
+            $(document).ready(function () {
+                App.loadAndDisplayRanklists();
+            });
+    }());
+
+
+
+
+    </script>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+

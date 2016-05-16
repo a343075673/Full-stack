@@ -1,0 +1,6 @@
+{
+        "CourseId": "CSCI1011", 
+        "CourseName": "Introduction to Programming with Java", 
+        "Professor": "Durant, John", 
+        "Description": "An introductory course in programming a computer, using the Java language. Object-oriented programming, classes, applets, methods, control structures, inheritance, overriding, GUI widgets, containers, and exceptions."
+}

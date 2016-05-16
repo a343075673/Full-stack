@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Rate My Courses is the best college courses reviews and ratings source based on student feedback. Over 1.4 million courses &amp; 15 million reviews.">
+        <title id="page-title"></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link href="/navbar-fixed-top.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Rate My Courses</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/courses.html">Courses</a></li>
+                        <!--<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ranklists<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/ranklists/high.html">Highest Rate</a></li>
+                                <li><a href="/ranklists/low.html">Lowest Rate</a></li>
+                                <li><a href="/ranklists/popular.html">Most Popular</a></li>
+                            </ul>
+                        </li>-->
+                        <li><a href="/about.html">About</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="sign-stuff"></ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <h1 id="page-h1-title"></h1>
+            <hr>
+            <div class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">ID</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="ID"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="Name"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Instructor</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="Instructor"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Description</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" id="Description"></p>
+                    </div>
+                </div>
+                <h2>Comments and Ratings</h2>
+                <hr>
+                <div id="comment-list"></div>
+                <h2>Add Yours</h2>
+                <hr>
+                <div class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Score</label>
+                        <div class="col-sm-10">
+                            <table>
+                                <tr width="50">
+                                    <th>
+                                        <select class="form-control" id="rate-select">
+                                            <option>0</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option selected="selected">10</option>
+                                        </select>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Comment</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="3" id="comment-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Submit" id="submit-button" class="btn btn-primary">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <hr>
+                <footer>
+                    <p>&copy; 2016 - Rate My Courses</p>
+                </footer>
+            </div>
+    </body>
+
+    <script src="http://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="/base-api-url.js"></script>
+    <script src="/user-cookie.js"></script>
+    <script type="text/template" id="list-template">
+        <div class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Username</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">${Username}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Score</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">${Score}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Comment</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static">${Comment}</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </script>
+    <script src="single-course.js"></script>
+
+</html>

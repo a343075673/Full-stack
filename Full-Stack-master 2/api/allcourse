@@ -1,0 +1,82 @@
+{
+    "arrayName": [
+    {
+        "id": "CSCI1121",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1021",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1023",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1112",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1020",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1010",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1132",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1041",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1022",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1131",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1011",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1111",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    },
+    {
+        "id": "CSCI1030",
+        "name": "CSNo.1",
+        "professor": "Timothy Kim11111",
+        "description": "1111111111111"
+    }
+    ]
+}
